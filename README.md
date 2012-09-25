@@ -1,0 +1,4 @@
+.conky
+======
+
+My conky config
