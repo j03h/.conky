@@ -98,8 +98,8 @@ ${offset 10}${upspeedgraph wlan2 20,100 FF0000 00FF00 -t -l} ${tab 60}${downspee
 # EMAIL
 ${offset 5}${stippled_hr 1}
 ${offset 10}${color slate grey}EMAIL: ${color } 
-${offset 15}${color slate grey}hub: ${color } ${execpi 300 ~/.conky/scripts/imap.pl} 
-${offset 15}${color slate grey}julio: ${color } ${execpi 300 ~/.conky/scripts/imap2.pl} 
+${offset 15}${color slate grey}imap1: ${color } ${execpi 300 ~/.conky/scripts/imap.pl} 
+${offset 15}${color slate grey}imap2: ${color } ${execpi 300 ~/.conky/scripts/imap2.pl} 
 
 
 
