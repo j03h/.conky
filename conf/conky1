@@ -1,0 +1,111 @@
+background yes
+use_xft yes
+xftfont Bitstream Vera Sans Mono:size=8
+xftalpha 1
+
+update_interval 2.0
+
+total_run_times 0
+
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+double_buffer yes # Use double buffering (reduces flicker, may not work for everyone)
+
+maximum_width 230
+
+draw_shades yes
+draw_outline no
+draw_borders no
+stippled_borders 8
+
+border_width 1
+
+default_color white
+default_shade_color black
+default_outline_color white
+
+alignment top_left
+
+gap_x 1
+gap_y 1
+
+no_buffers yes
+uppercase no
+
+cpu_avg_samples 4
+net_avg_samples 5
+
+override_utf8_locale yes
+
+use_spacer right # Add spaces to keep things from moving about?  This only affects certain objects.
+
+TEXT
+# HORA
+${offset 5}${stippled_hr 1}
+${offset 10}${font size=8}${color FFFFFF}${time %e %B %G | %H:%M}${font}
+
+# CPU
+${offset 5}${stippled_hr 1}
+${offset 10}${color slate grey}TEMP: ${color FFFFFF}${acpitemp}ºC
+${offset 10}${color slate grey}CORE1:${color } ${cpu cpu1}% ${tab 60}${color slate grey}CORE2:${color } ${cpu cpu2}%
+${offset 10}${cpubar cpu1 4, 100} ${tab 60}${cpubar cpu2 4, 100}
+${offset 10}${cpugraph cpu1 20,100 00FF00 FF0000 2800MHz -t -l} ${tab 60}${cpugraph cpu2 20,100 00FF00 FF0000 2800MHz -t -l}
+${offset 10}${color ddaa00}${top name 1}${alignr 4}${top cpu 1} 
+${offset 10}${color FFFFFF}${top name 2}${alignr 4}${top cpu 2} 
+${offset 10}${color FFFFFF}${top name 3}${alignr 10}${top cpu 3}
+${offset 10}${color FFFFFF}${top name 4}${alignr 10}${top cpu 4}
+${offset 10}${color FFFFFF}${top name 5}${alignr 10}${top cpu 5}${font}
+
+${offset 10}${color slate grey}LOAD: ${color FFFFFF}$loadavg
+${offset 10}${loadgraph 20,210 00FF00 FF0000 -t -l}
+
+# MEM
+${offset 5}${stippled_hr 1}
+${offset 10}${color slate grey}MEM: ${color }$memperc% ${tab 60}${color slate grey}SWAP:${color } $swapperc%
+${offset 10}${membar 3,100} ${tab 60}${swapbar 3,100} 
+${offset 10}${color slate grey}${color }$mem/ $memmax ${tab 60}$swap/ $swapmax
+${offset 10}${color slate grey}${color }$memfree/ $memmax ${tab 60}$swapfree/ $swapmax
+${offset 10}${color slate grey}BUF:${color } $buffers ${tab 60}${color slate grey}CAC:${color } $cached
+${offset 10}${memgraph 20,210 00FF00 FF0000 3160000kiB -t -l}
+${offset 10}${color ddaa00}${top_mem name 1}${alignr 4}${top_mem mem 1} 
+${offset 10}${color FFFFFF}${top_mem name 2}${alignr 4}${top_mem mem 2} 
+${offset 10}${color FFFFFF}${top_mem name 3}${alignr 10}${top_mem mem 3}
+${offset 10}${color FFFFFF}${top_mem name 4}${alignr 10}${top_mem mem 4}
+${offset 10}${color FFFFFF}${top_mem name 5}${alignr 10}${top_mem mem 5}${font}
+
+# DISK
+${offset 5}${stippled_hr 1}
+${offset 10}${color slate grey}DISK:${color } $fs_used_perc% ${tab 60}${color slate grey}${color }$fs_used/ $fs_size
+${offset 10}${fs_bar 3,100 /} ${tab 60}${color slate grey}${color }$fs_free/ $fs_size
+
+${offset 10}${color slate grey}READ:${color }$diskio_read ${tab 60}${color slate grey}WRITE:${color }$diskio_write
+${offset 10}${diskiograph_read 20,100 000000 ffffff} ${tab 60}${diskiograph_write 20,100 000000 ffffff}
+${offset 10}${diskiograph 20,210 000000 ffffff}
+
+# NET
+${offset 5}${stippled_hr 1}
+${offset 10}${color slate grey}WAN: ${color}${execi 1800 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
+${offset 10}${color slate grey}Up: ${color }${upspeed eth1}/s ${color} ${tab 60}${color slate grey}Down: ${color }${downspeed eth1}/s
+${offset 10}${upspeedgraph eth1 20,100 FF0000 00FF00 20KiB -t -l} ${tab 60}${downspeedgraph eth1 20,100 FF0000 00FF00 750KiB -t -l}
+
+${offset 10}${color slate grey}WFI:
+${offset 10}${color slate grey}Up: ${color }${upspeed wlan2}/s ${color} ${tab 60}${color slate grey}Down: ${color }${downspeed wlan2}/s
+${offset 10}${upspeedgraph wlan2 20,100 FF0000 00FF00 -t -l} ${tab 60}${downspeedgraph wlan2 20,100 FF0000 00FF00 -t -l}
+
+# EMAIL
+${offset 5}${stippled_hr 1}
+${offset 10}${color slate grey}EMAIL: ${color } 
+${offset 15}${color slate grey}hub: ${color } ${execpi 300 ~/.conky/scripts/imap.pl} 
+${offset 15}${color slate grey}julio: ${color } ${execpi 300 ~/.conky/scripts/imap2.pl} 
+
+
+
+#${offset 10}${execpi 300 curl --silent "http://xml.weather.yahoo.com/forecastrss?p=CIXX0007&u=c"| sed -e '/C<BR\|Low/!d; s/<.*>//'}
+#${offset 10}${color slate grey}/var/log/syslog:
+#${offset 10}${color}${tail /var/log/syslog 10}
+
+
+

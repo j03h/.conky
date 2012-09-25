@@ -1,0 +1,71 @@
+background yes
+use_xft yes
+xftfont Bitstream Vera Sans Mono:size=8
+xftalpha 1
+
+update_interval 2.0
+
+total_run_times 0
+
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+double_buffer yes # Use double buffering (reduces flicker, may not work for everyone)
+
+maximum_width 1300
+
+draw_shades no
+draw_outline no
+draw_borders no
+stippled_borders 8
+
+border_width 1
+
+default_color white
+default_shade_color black
+default_outline_color white
+
+alignment top_left
+
+gap_x 240
+gap_y 1
+
+no_buffers yes
+uppercase no
+
+cpu_avg_samples 4
+net_avg_samples 5
+
+override_utf8_locale yes
+
+use_spacer right # Add spaces to keep things from moving about?  This only affects certain objects.
+
+TEXT
+${stippled_hr 1}
+${color slate grey}syslog:${color}
+${stippled_hr 1}
+${tail /var/log/syslog 20}
+${stippled_hr 1}
+${color slate grey}auth:${color}
+${stippled_hr 1}
+${tail /var/log/auth.log 15}
+${stippled_hr 1}
+${color slate grey}daemon:${color}
+${stippled_hr 1}
+${tail /var/log/daemon.log 10}
+${stippled_hr 1}
+${color slate grey}alternatives:${color}
+${stippled_hr 1}
+${tail /var/log/alternatives.log 5}
+${stippled_hr 1}
+${color slate grey}debug:${color}
+${stippled_hr 1}
+${tail /var/log/debug 5}
+${stippled_hr 1}
+${color slate grey}dmesg:${color}
+${stippled_hr 1}
+${tail /var/log/dmesg 5}
+
+
