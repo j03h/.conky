@@ -8,8 +8,8 @@ use Mail::IMAPClient;
 use IO::Socket::SSL;
 use Encode qw(decode);
 
-my $username = 'hub@j03h.com'; 
-my $password = '--**//m3l0l4m3'; 
+my $username = 'imap@email.com'; 
+my $password = 'password'; 
 
 my $socket = IO::Socket::SSL->new(
   PeerAddr => 'imap.gmail.com',
